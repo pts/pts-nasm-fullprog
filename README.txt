@@ -1,9 +1,10 @@
 pts-nasm-fullprog: libraries for writing full executable programs with NASM
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-pts-nasm-fullprog is a few %include files for NASM which makes it convenient
-to write full executables programs with NASM (rather feeding the object file
-output of NASM to the linker). Thus NASM can be used without a linker. The
-libraries are optimized for size, they add only a few bytes of overhead.
+pts-nasm-fullprog contains a few %include files for NASM for writing full
+executable programs directly (rather feeding the object file output of NASM
+to the linker). Thus NASM can be used without a linker. The libraries are
+optimized for size, they add only a few bytes of overhead, less than how
+much a generic linker would add.
 
 Supported architecture targets:
 
