@@ -8,7 +8,7 @@
 ; old (e.g. 0.98.39 on 2005-01-15) and new (e.g. 2.14.02 on 2018-12-26)
 ; versions of NASM.
 ;
-; Usage:
+; Example myexe.nasm source usage:
 ;
 ;   %include "fullprog_dosexe.inc.nasm"
 ;   fullprog_code
@@ -18,6 +18,10 @@
 ;   fullprog_bss
 ;   ...  ; Uninitialized data like: `myvar: resw 1' here.
 ;   fullprog_end [stack_size]
+;
+; Compilation (assembling): nasm -f bin -o myexe.exe myexe.nasm
+;
+; Disassembling: ndisasm -b 16 -e 26 -o 10 myexe.exe
 ;
 ; At startup, ds:0 and ss:0 are the data, cs:ip is the code (ip is typically
 ; 10 after fullprog_code), ss:sp is the top of stack (grows downwards).
@@ -47,7 +51,7 @@ db 'MZ'  ; Signature.
 dw ((code_end-code_startseg)+(data_end-data_start))&511|(((~((code_end-code_startseg)+(data_end-data_start))&511)+1)&512)  ; Image size low 9 bits, 0 replaced with 512.
 dw ((code_end-code_startseg)+(data_end-data_start))>>9  ; Image size high bits.
 dw call__fullprog_end*0  ; Relocation count.
-dw 1  ; Paragraph (16 byte) count of header. Points to code_startsegseg.
+dw 1  ; Paragraph (16 byte) count of header. Points to code_startseg.
 dw (bss_end-bss_start+15-(-((data_end-data_start)+(code_end-code_startseg))&15))>>4  ; Paragraph count of minimum required memory.
 dw 0xffff  ; Paragraph count of maximum required memory.
 dw (code_end-code_startseg)>>4  ; Stack segment (ss) base, will be same as ds. Low 4 bits are in vstart= of .data.

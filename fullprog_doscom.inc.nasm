@@ -8,7 +8,7 @@
 ; old (e.g. 0.98.39 on 2005-01-15) and new (e.g. 2.14.02 on 2018-12-26)
 ; versions of NASM.
 ;
-; Usage:
+; Example mycom.nasm source usage:
 ;
 ;   %include "fullprog_doscom.inc.nasm"
 ;   fullprog_code
@@ -18,6 +18,10 @@
 ;   fullprog_bss
 ;   ...  ; Uninitialized data like: `myvar: resw 1' here.
 ;   fullprog_end [stack_size]
+;
+; Compilation (assembling): nasm -f bin -o mycom.com mycom.nasm
+;
+; Disassembling: ndisasm -b 16 -o 0x100 mycom.com
 ;
 ; At startup, ds:... and ss:... are the data, cs:ip is the code (ip is typically
 ; 0x100 after fullprog_code), ss:sp is the top of stack (grows downwards).
