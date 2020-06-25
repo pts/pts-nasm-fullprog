@@ -13,7 +13,7 @@ Supported architecture targets:
   Shortest output program (which just exits) is 1 byte.
 
 * fullprog_dosexe.inc.nasm: DOS 8086 (16-bit) .exe file. It implements the
-  small memory modle, maximum size of code is ~64 KiB, maximum size of
+  small memory model, maximum size of code is ~64 KiB, maximum size of
   data + stack is ~64 KiB. Shortest output program (which just exits) is
   31 bytes. (The same program would be >=64 bytes with OpenWatcom if ss, ds
   and sp were to be set up properly.)
