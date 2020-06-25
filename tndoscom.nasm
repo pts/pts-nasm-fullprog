@@ -10,6 +10,9 @@
 
 fullprog_code
 
+mov bx, cont
+jmp bx
+cont:
 mov ah, 9  ; WRITE_STDOUT.
 push dword 'T$'
 mov dx, sp

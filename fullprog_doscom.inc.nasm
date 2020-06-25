@@ -46,7 +46,7 @@ times $$-$ db 0  ; Fails if there is any code or data in front of `fullprog_code
 %define fullprog_code_called
 fullprog___check_empty
 bits 16
-segment .text align=1 vstart=0x100  ; org 0x100
+section .text align=1 vstart=0x100  ; org 0x100
 code_start:
 start:
 %endmacro

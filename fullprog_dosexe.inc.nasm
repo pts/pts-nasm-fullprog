@@ -46,6 +46,7 @@ times $$-$ db 0  ; Fails if there is any code or data in front of `fullprog_code
 %define fullprog_code_called
 fullprog___check_empty
 bits 16
+section .text align=1 vstart=-0x10
 ; DOS .exe header, similar to: https://stackoverflow.com/q/14246493/97248
 db 'MZ'  ; Signature.
 dw ((code_end-code_startseg)+(data_end-data_start))&511|(((~((code_end-code_startseg)+(data_end-data_start))&511)+1)&512)  ; Image size low 9 bits, 0 replaced with 512.
