@@ -28,4 +28,8 @@ https://www.muppetlabs.com/~breadbox/software/tiny/teensy.html . The
 shortest output program (which just exits) without ELF header overlap
 trickery is 91 bytes.
 
+The pe_stub*.exe files are examples for writing a shorted DOS stub for
+Windows PE executables. Typically the DOS stub is 0x80 == 128 bytes. The
+minimum is 0x40 == 64 bytes, which is achieved by pe_stub1.nasm .
+
 __END__
