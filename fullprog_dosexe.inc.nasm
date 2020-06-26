@@ -49,11 +49,11 @@ bits 16
 section .text align=1 vstart=-0x10
 ; DOS .exe header, similar to: https://stackoverflow.com/q/14246493/97248
 db 'MZ'  ; Signature.
-dw ((code_end-code_startseg)+(data_end-data_start))&511|(((~((code_end-code_startseg)+(data_end-data_start))&511)+1)&512)  ; Image size low 9 bits, 0 replaced with 512.
-dw ((code_end-code_startseg)+(data_end-data_start))>>9  ; Image size high bits.
+dw ((code_end-code_startseg)+(data_end-data_start)+(bss_end-bss_start))&511|(((~((code_end-code_startseg)+(data_end-data_start)+(bss_end-bss_start))&511)+1)&512)  ; Image size low 9 bits, 0 replaced with 512.
+dw ((code_end-code_startseg)+(data_end-data_start)+(bss_end-bss_start))>>9  ; Image size high bits. It also includes .bss (which is not part of the file). Crashes DOSBox if .bss is included in the ``minimum required memory'' field instead.
 dw call__fullprog_end*0  ; Relocation count.
 dw 1  ; Paragraph (16 byte) count of header. Points to code_startseg.
-dw (bss_end-bss_start+15-(-((data_end-data_start)+(code_end-code_startseg))&15))>>4  ; Paragraph count of minimum required memory.
+dw 0  ; Paragraph count of minimum required memory (in addition to the image size).
 dw 0xffff  ; Paragraph count of maximum required memory.
 dw (code_end-code_startseg)>>4  ; Stack segment (ss) base, will be same as ds. Low 4 bits are in vstart= of .data.
 code_startseg:
