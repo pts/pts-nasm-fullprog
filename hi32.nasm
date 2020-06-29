@@ -4,9 +4,9 @@
 ;
 ; Create WDOSX.DX:
 ;
-; $ wget -nv -O wdosx097.zip http://tippach.business.t-online.de/wdosx/wdosx097.zip
-; $ unzip -q -c wdosx097.zip BIN/STUBIT.EXE >stubit.exe
-; $ SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy dosbox -conf /dev/null -c "mount c ." -c c: -c "stubit.exe -extract" -c exit
+;   $ wget -nv -O wdosx097.zip http://tippach.business.t-online.de/wdosx/wdosx097.zip
+;   $ unzip -q -c wdosx097.zip BIN/STUBIT.EXE >stubit.exe
+;   $ SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy dosbox -conf /dev/null -c "mount c ." -c c: -c "stubit.exe -extract" -c exit
 ;
 ; Compile (assemble):
 ;
