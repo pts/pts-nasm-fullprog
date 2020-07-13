@@ -11,8 +11,12 @@ bits 32
               org     0x08048000
 
 ehdr:                                                 ; Elf32_Ehdr
-              db      0x7F, "ELF", 1, 1, 1, 0         ;   e_ident
-      times 8 db      0
+              db      0x7F, "ELF"                     ;   e_ident[EI_MAG*]
+              db      1                               ;   e_ident[EI_CLASS]
+              db      1                               ;   e_ident[EI_DATA]
+              db      1                               ;   e_ident[EI_VERSION]
+              db      3                               ;   e_ident[EI_OSABI]
+              dd      0, 0                            ;   e_ident[EI_PAD+]
               dw      2                               ;   e_type
               dw      3                               ;   e_machine
               dd      1                               ;   e_version
