@@ -1,5 +1,11 @@
+;
+; exlinuxi386.nasm: just exit successfully, as a tiny Linux i386 ELF executable
+; by pts@fazekas.hu at Wed Jun 24 22:42:23 CEST 2020
+;
+; $ nasm -f bin -o exlinuxi386 exlinuxi386.nasm && chmod +x exlinuxi386
+;
 ; Based on https://www.muppetlabs.com/~breadbox/software/tiny/teensy.html
-; nasm -f bin -o exlinuxi386 exlinuxi386.nasm && chmod +x exlinuxi386
+;
 
 bits 32
               org     0x08048000
@@ -29,16 +35,18 @@ phdr:                                                 ; Elf32_Phdr
               dd      $$                              ;   p_vaddr
               dd      $$                              ;   p_paddr
               dd      filesize                        ;   p_filesz
-              dd      filesize                        ;   p_memsz
+              dd      memsize                         ;   p_memsz
               dd      5                               ;   p_flags
               dd      0x1000                          ;   p_align
 
 phdrsize      equ     $ - phdr
 
 _start:
-              xor     eax, eax
-              inc     eax
-              xor     ebx, ebx
-              int     0x80
+              xor eax, eax
+              inc eax  ; __NR_exit.
+              xor ebx, ebx  ; EXIT_SUCCESS.
+              int 0x80
 
 filesize      equ     $ - $$
+
+memsize       equ     $ - $$
